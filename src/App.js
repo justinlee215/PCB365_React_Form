@@ -13,6 +13,7 @@ function App() {
     shipperAddress: ""
   })
 
+  console.log(values)
   const inputs = [
     {
       id: 1,
@@ -35,41 +36,49 @@ function App() {
     },
     {
       id: 3,
-      name: "shipperName",
+      name: "shipperPhone",
       type: "text",
-      placeholder: "Shipper Name",
+      placeholder: "Shipper Phone",
       errormessage:
-        "Shipper Name is required",
-      label: "Shipper Name",
+        "Shipper Phone is required",
+      label: "Shipper Phone",
       required: true,
     },
     {
       id: 4,
-      name: "shipperContact",
+      name: "shipperAddress",
       type: "text",
-      placeholder: "Shipper Contact",
-      errormessage: "Shipper Contact is required",
-      label: "Shipper Contact",
-      required: true,
+      placeholder: "Shipper Address",
+      errormessage: "Shipper Address is required",
+      label: "Shipper Address",
+      required: false,
     },
   ]
 
   const onChange = (e) => {
-    setValues({...values, [values[e.target.name]]: values[e.target.value]})
+    setValues({...values, [e.target.name]: e.target.value})
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(values)
+  }
+  const isValid = () => {
+    return inputs.filter(input => input.required).some(input => !values[input.name])
+     
+  }
+  console.log("isValid: ", isValid())
   return (
-    <div className="App">
-      <header className="App-header">
-          <form action="">
-            {
-              inputs.map(input => (
-                <FormInput  key={input.id} {...input} value={values[input.name]} onChange={onChange}/>
-              ))
-            }
-            <button>Submit</button>
-          </form>
-      </header>
+    <div className="app">
+      <h1></h1>
+        <form onSubmit={handleSubmit}>
+          {
+            inputs.map(input => (
+              <FormInput  key={input.id} {...input} value={values[input.name]} onChange={onChange}/>
+            ))
+          }
+          <button disabled={isValid()} className={ isValid() ? "isValid": "isNotValid"}>Submit</button>
+        </form>
     </div>
   );
 }
