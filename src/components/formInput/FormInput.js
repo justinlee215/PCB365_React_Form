@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './formInput.css'
 
 export default function FormInput(props) {
@@ -8,7 +8,8 @@ export default function FormInput(props) {
   const handleBlur = (e) => {
     setBlured(true)
   }
-  console.log("focused: ", blured)
+
+  // console.log("focused: ", blured)
   return (
       <div className="formInput">
           <label htmlFor="">{label}</label>
@@ -21,7 +22,7 @@ export default function FormInput(props) {
             // }
             focused={blured.toString()}
             />
-          <span>{ errormessage}</span>
+          <span>{errormessage}</span>
       </div>
     )
 }
