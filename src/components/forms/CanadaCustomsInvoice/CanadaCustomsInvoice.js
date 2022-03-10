@@ -1,6 +1,6 @@
 import { useState }  from 'react'
 import Shipper from './Shipper/Shipper'
-import './canadaCustomsInvoice.css'
+// import './canadaCustomsInvoice.css'
 import ButtonsNavigation from '../../buttonsNavigation/ButtonsNavigation'
 
 function CanadaCustomsInvoice() {
